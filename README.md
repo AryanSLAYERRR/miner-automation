@@ -1,4 +1,9 @@
 # Monero-Miner
+
+MINER DOES NOT WORK ANY LONGER
+THERFORE IT IS TEMPORARILY PAUSED DUE TO A BUG, WILL BE UPDATED SOON! 
+
+
 # ⚠️ DISCLAIMER
 
 This project is provided **for educational purposes only**. The developer is **not responsible** for any misuse, consequences, damage, or violations resulting from the use of this code. **Use at your own risk.**
