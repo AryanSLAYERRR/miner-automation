@@ -1,190 +1,161 @@
+<h1 align="center">🛠 Miner Automation</h1>
+<p align="center">
+Automated browser-based Monero mining using Playwright and Gmail OTP login — use at your own risk.
+</p>
 
-# 🔴**VULNERABILITY HAS BEEN FIXED, it no longer works, stay updated I will fix it soon**
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-blue.svg">
+  <img src="https://img.shields.io/badge/Playwright-Driven-lightgrey.svg">
+  <img src="https://img.shields.io/badge/License-MIT-green.svg">
+</p>
 
-# Monero-Miner
+---
 
+##  Disclaimer
 
-# ⚠️ DISCLAIMER
+**This project is for educational purposes only.**  
+The developer is not responsible for any misuse, consequences, damage, or terms violations resulting from its use. **Use at your own risk.**  
+*If you're curious how it works, feel free to contact me on Instagram rather than relying on this README.*  
 
-This project is provided **for educational purposes only**. The developer is **not responsible** for any misuse, consequences, damage, or violations resulting from the use of this code. **Use at your own risk.**
---------------------
-If anyone does want to know how it works feel free to contact me on my IG
------
-This project uses XMRIG CC by [Bendr0id](https://github.com/Bendr0id/xmrigCC)
+---
 
-# ‼️‼️IMPORTANT:
-For Now the code only supports MONERO mining, if this gets attention il add other CPU intensive options for mining. OR you can edit the command.txt file yourself if you know what you are doing.
+##  Overview
 
+Miner Automation streamlines browser-based Monero mining by:
 
-# 💻 Browser Miner Automation with Playwright
+- Using Playwright for automated browser control.
+- Logging in via Gmail OTP (through Gmail API).
+- Opening multiple tabs to mine with a safe JavaScript keep-alive script.
+- Delivering notable hash rates (~700–800 H/s per tab).
+- Injecting commands and cleaning inbox emails.
+- Designed around XMRig CC from Bendr0id.
 
-This project automates browser-based crypto mining using [Playwright](https://playwright.dev/python/) and Google account OTP-based login. It logs into a vulnerable platform, opens multiple tabs, and injects a safe JavaScript-based keep-alive script to maintain mining sessions.
+> **Paused:** Mining functionality currently doesn't work. A workaround is in progress.
 
-## ⚙️ Features
+---
 
-- 🔐 Auto-login using Gmail OTP (via Gmail API)
-- 🚀 Multi-tab mining automation (customizable tab count)
-- 🧠 JavaScript-based keep-alive system (safe & non-intrusive)
-- 🔄 Command injection into terminal through the web interface
-- 🧼 Email cleanup to avoid inbox clutter
-- 💵 You Get approx 700-800 Hashrate on every TAB
-- TO DO - More advance detections for inactivity, Better config optimization, aim for higher hashrate 
+##  Features
 
-## 🛠 Requirements
-- Python 3.10+
-- Playwright 
-- Gmail API credentials (`credentials.json`)
+- **Auto-login** using Gmail OTP (via Gmail API).
+- **Multi‑tab mining** (configurable count).
+- **Safe keep-alive** with JS: scrolling, focusing, input events.
+- **Terminal command injection** via browser UI.
+- **Gmail cleanup** to manage inbox clutter.
+- Approx. **700–800 H/s per tab**, depending on resources.
+- **Planned enhancements**: inactivity detection, config optimization, improved hashrates.
+
+---
+
+##  Requirements
+
+- **Python 3.10+**
+- **Playwright**
+- **Gmail API credentials** (`credentials.json`)
 - Google API packages:
   ```bash
-  pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-- Install playwright browser binaries
-  
-## 📁 Setup
-
-1. **Clone the Repository**
-  ```bash
-  git clone https://github.com/AryanSLAYERRR/miner-automation.git
-  cd miner-automation
+  pip install --upgrade google-api-python-client                    google-auth-httplib2                    google-auth-oauthlib
   ```
+- **Playwright browser binaries** (via `playwright install`).
 
-2. **Install Python Dependencies**
-  ```bash
-  pip install -r requirements.txt
-  playwright install
-  ```
+---
 
-3. **Set Up Gmail API**
-   
-  🟥 **NOTE** 
-  **You will be giving the BOT full access to your gmail, so using alt gmail ID is highly preffered**
-  
-  1. **Create a Google Cloud Project**
-      - Go to: https://console.cloud.google.com/
-      
-      - Click "Create Project" → give it a name (like “Gmail Login BOT”).
-    
-  2. **Enable Gmail API**
-      - After project is created, go to "APIs & Services" > Library.
-      
-      - Search for "Gmail API" → Click Enable.
+##  Setup
 
-  3. **Create OAuth Credentials**
-      - Go to APIs & Services > Credentials.
-      
-      - Click "Create Credentials" → OAuth client ID
-      
-      - Choose Desktop App.
-      
-      - Download the credentials.json file.
-      
-      - Rename it credentials.json and save it in the same directory
+1. **Clone the repo**:
+   ```bash
+   git clone https://github.com/AryanSLAYERRR/miner-automation.git
+   cd miner-automation
+   ```
 
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   playwright install
+   ```
 
-4. **Add Your Monero Wallet Address**
-      - Use any wallet supported by nanopool.org,
-        Open `command.txt` and edit the field (Your_wallet_address) with you own wallet address, there are 3 such fields
+3. **Set up Gmail API** (gives the script access to your Gmail — use an alternate/test account recommended):
+   - Go to Google Cloud Console → Create a new project.
+   - Enable the **Gmail API**.
+   - Create **OAuth 2.0 credentials** (set type = Desktop app).
+   - Download and rename file to `credentials.json`, placing it in the project root.
 
-5. **Add your email**
-      - Head to main.py and edit ("your_email") with the email you used for creating the cloud project
+4. **Configure command and credentials**:
+   - Edit `command.txt` and paste your mining command, including your Monero wallet address.
+   - In `main.py`, set `"your_email"` to match the one used for the Gmail API.
 
-## 🚀 Usage
+---
 
-Run the script:
+##  Usage
 
 ```bash
 python gmailcode.py
 ```
-The script will:
-  - Open up a google auth window
-  - Select the account you used to create credentials.json
-  - You may get an error of insufficent access, or the dev has not allowed you to access it
-  - To fix this, Go to console.cloud.google.com
-  - Open your project
-  - Go to APIS
-  - Then Go to OAuth consent Screen
-  - Click on Audience
-  - Under Test Users, Click on Add users
-  - Fill the email you used for this project
-  - Save
-  - Now rerun `python gmailcode.py`
-  - If Sucessfull, it should save a file named `token.json`
 
-  - Now Run
-    ```bash
-    python main.py
-    ```
-  - This will start the program and you should see chromium tab pop up and simulating the login process for you
+- You’ll be prompted to authorize via a browser.
+- If you encounter access errors, update your Google Cloud project's OAuth consent screen:
+  - Add your testing email under **API & Services → OAuth consent → Test Users**.
+  - Retry.
+- On success, you'll receive a `token.json` file.
 
-**OPTIONS**
-  - You can edit the num_tabs field if you want more tabs mining ( Do not exceed more than 90% ram consumption, as it may cause forceful inactivity)
-  - To check mining progress, head to https://nanopool.org and enter your wallet address in the search field
+Then run:
 
-  20 tabs being run
-  ![image](https://github.com/user-attachments/assets/7c697625-3813-4759-a4d7-9e380e3ca116)
-
-  ![image](https://github.com/user-attachments/assets/fc672b28-2438-41c5-951b-de3ff1b932bb)
-
-**NOTE**
-**THIS IS AN EXPLOIT AND MAY STOP WORKING IF PATCHED**
-
-## 🧠 How Keep-Alive Works
-
-Instead of sending keystrokes, we inject the following safe JavaScript:
-- Scrolls the page slightly up and down
-- Focuses the terminal's hidden input field
-- Dispatches an `input` event
-
-This keeps the mining sessions alive without disrupting the actual terminal behavior.
-
-## 📂 Project Structure
-
-```
-miner-automation/
-├── gmailcode.py                # Gmail OTP handler
-├── main.py                     # Main automation logic
-├── command.txt                 # Paste your mining command here
-├── credentials.json            # Google OAuth client credentials
-├── token.json                  # Auto-generated on first login
-├── requirements.txt
-├── .gitignore
-├── README.md
+```bash
+python main.py
 ```
 
-## 🔒 Security Notes
+- Chrome should launch via Playwright, performing mining automation.
 
-- Your Gmail credentials are stored locally and securely.
-- Never share `credentials.json` or `token.json`.
-- Avoid using accounts with 2FA unless you're using app passwords.
+**Optional config**: adjust `num_tabs` for parallel mining — avoid exceeding ~90% RAM to prevent system instability.
 
-## 📌 Disclaimer
-
-This project is intended for educational purposes only. Use it responsibly and ensure you're not violating any terms of service or mining policies of the platform you're interacting with.
-
-## 📜 License
-
-MIT License
-
-Copyright (c) 2025 AryanSLAYERRR
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Monitor progress on [Nanopool](https://nanopool.org) by searching your wallet address.
 
 ---
 
-Created with 💻 by [Aryan Gupta](https://github.com/AryanSLAYERRR)
+##  Keep-Alive Mechanism
 
+To keep terminal sessions alive without pushing keystrokes, the injected JS:
+
+- Scrolls the page slightly up and down.
+- Focuses on the hidden input.
+- Dispatches an `input` event.
+
+---
+
+##  Project Structure
+
+```
+miner-automation/
+├── gmailcode.py        # Gmail OTP handler
+├── main.py             # Core automation logic
+├── command.txt         # Mining command with wallet info
+├── credentials.json    # Downloaded Google OAuth credentials
+├── token.json          # Generated after Gmail authorization
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
+
+---
+
+##  Security Notes
+
+- Your Gmail credentials (credentials.json, token.json) are stored locally.  
+- **Never share them.**  
+- Avoid using accounts with 2FA unless using app passwords.
+
+---
+
+##  License
+
+MIT License © 2025 AryanSLAYERRR  
+Permission is granted, free of charge, to use, copy, modify, or distribute this software under the terms of the license.
+
+---
+
+##  About
+
+A browser‑based Monero mining tool showcasing Playwright automation and Gmail OTP integration.
+
+---
+
+<p align="center">✨ Made with automation and a touch of caution ✨</p>
