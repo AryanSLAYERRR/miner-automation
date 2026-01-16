@@ -126,7 +126,7 @@ def automate_mining(): # functions that handels logging in and calling the minin
         service = get_gmail_service()
         clear_login_emails(service) #deleting emails of previous one-time codes
 
-        page.goto("https://same.new/login")
+        page.goto("")
         time.sleep(0.5)
         #--------------------------------------
         page.fill('input[type="email"]', email_address)
@@ -167,3 +167,4 @@ def automate_mining(): # functions that handels logging in and calling the minin
 
 if __name__ == "__main__":
     automate_mining()
+
